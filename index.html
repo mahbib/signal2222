@@ -1,24 +1,161 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>SIGNAL 22:22</title>
 
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
       body {
-        background: black;
-        color: #00ff66;
+        background: #000;
+        color: #00ff88;
         font-family: monospace;
-        padding: 40px;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        padding: 20px;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 420px;
+        border: 1px solid #00ff88;
+        padding: 25px;
+        border-radius: 20px;
+        background: rgba(0, 0, 0, 0.85);
+        box-shadow: 0 0 25px #00ff88;
+        animation: fadeIn 2s ease;
+        position: relative;
+      }
+
+      .glow {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background: #00ff88;
+        filter: blur(120px);
+        opacity: 0.15;
+        top: -50px;
+        right: -50px;
+      }
+
+      h1 {
+        font-size: 52px;
+        text-align: center;
+        margin-bottom: 15px;
+        animation: flicker 3s infinite;
+      }
+
+      .subtitle {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #8affc5;
+        line-height: 1.6;
+      }
+
+      .binary {
+        font-size: 18px;
+        word-break: break-word;
+        text-align: center;
+        margin-bottom: 25px;
+        line-height: 1.8;
+      }
+
+      .hint {
+        text-align: center;
+        font-size: 14px;
+        opacity: 0.5;
+        animation: pulse 2s infinite;
+      }
+
+      .cursor {
+        display: inline-block;
+        animation: blink 1s infinite;
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          opacity: 0.3;
+        }
+
+        50% {
+          opacity: 1;
+        }
+
+        100% {
+          opacity: 0.3;
+        }
+      }
+
+      @keyframes flicker {
+        0% {
+          opacity: 1;
+        }
+
+        50% {
+          opacity: 0.8;
+        }
+
+        52% {
+          opacity: 0.4;
+        }
+
+        54% {
+          opacity: 1;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
     </style>
   </head>
 
   <body>
-    <h1>22:22</h1>
+    <div class="container">
+      <div class="glow"></div>
 
-    <p></p>
-    <p>The signal has returned</p>
-    <p>01010100 01010010 01011001</p>
-    <p>/echo.html</p>
+      <h1>22:22</h1>
+
+      <p class="subtitle">
+        The signal has returned<br />
+        If you can read this,<br />
+        you are already inside <br />
+        SELAMAT DATANG WOK
+      </p>
+
+      <p class="binary">01010100 01010010 01011001</p>
+
+      <p class="hint">
+        transmission awaiting response<span class="cursor">_</span>
+      </p>
+    </div>
   </body>
 </html>

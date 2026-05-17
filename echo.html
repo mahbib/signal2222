@@ -1,23 +1,309 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>ECHO</title>
 
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
       body {
-        background: black;
-        color: red;
+        background: #000000;
         font-family: monospace;
-        padding: 40px;
+        overflow: hidden;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ff0000;
+        position: relative;
+      }
+
+      /* DARK RED GLOW */
+
+      .redGlow {
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background: red;
+        filter: blur(180px);
+        opacity: 0.08;
+        animation: pulseGlow 4s infinite;
+      }
+
+      /* BLOOD DRIPS */
+
+      .blood {
+        position: absolute;
+        top: -200px;
+        width: 14px;
+        height: 220px;
+        background: linear-gradient(to bottom, #ff0000, #2a0000);
+        border-radius: 30px;
+        opacity: 0.8;
+        animation: drip 8s linear infinite;
+        filter: blur(1px);
+      }
+
+      .b1 {
+        left: 15%;
+        animation-delay: 0s;
+      }
+
+      .b2 {
+        left: 40%;
+        animation-delay: 2s;
+      }
+
+      .b3 {
+        left: 70%;
+        animation-delay: 4s;
+      }
+
+      .b4 {
+        left: 85%;
+        animation-delay: 6s;
+      }
+
+      /* STATIC FLASH */
+
+      .flash {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: white;
+        opacity: 0;
+        pointer-events: none;
+        animation: flash 7s infinite;
+      }
+
+      /* SCANLINE */
+
+      .scanline {
+        position: absolute;
+        width: 100%;
+        height: 5px;
+        background: rgba(255, 255, 255, 0.04);
+        animation: scan 5s linear infinite;
+      }
+
+      /* CONTAINER */
+
+      .container {
+        width: 90%;
+        max-width: 430px;
+        padding: 30px;
+        border: 1px solid #500000;
+        border-radius: 20px;
+        background: rgba(0, 0, 0, 0.93);
+        box-shadow:
+          0 0 10px #ff0000,
+          0 0 30px #440000;
+        z-index: 5;
+        animation: appear 2s ease;
+        position: relative;
+      }
+
+      /* TITLE */
+
+      h1 {
+        text-align: center;
+        font-size: 44px;
+        margin-bottom: 25px;
+        color: #ff1111;
+        text-shadow:
+          0 0 5px red,
+          0 0 20px darkred;
+        animation: glitch 2s infinite;
+      }
+
+      /* MORSE */
+
+      .morse {
+        text-align: center;
+        font-size: 22px;
+        line-height: 2;
+        margin-bottom: 30px;
+        letter-spacing: 3px;
+      }
+
+      /* CIPHER */
+
+      .cipher {
+        text-align: center;
+        font-size: 26px;
+        color: white;
+        margin-bottom: 30px;
+        text-shadow: 0 0 10px white;
+        letter-spacing: 4px;
+      }
+
+      /* MESSAGE */
+
+      .message {
+        text-align: center;
+        font-size: 13px;
+        opacity: 0.45;
+        line-height: 1.8;
+        color: #ff5555;
+      }
+
+      /* GLITCH */
+
+      @keyframes glitch {
+        0% {
+          transform: translate(0);
+        }
+
+        20% {
+          transform: translate(-2px, 2px);
+        }
+
+        40% {
+          transform: translate(2px, -2px);
+        }
+
+        60% {
+          transform: translate(-1px, 1px);
+        }
+
+        80% {
+          transform: translate(1px, -1px);
+        }
+
+        100% {
+          transform: translate(0);
+        }
+      }
+
+      /* BLOOD */
+
+      @keyframes drip {
+        0% {
+          transform: translateY(-250px);
+          opacity: 0;
+        }
+
+        10% {
+          opacity: 0.9;
+        }
+
+        100% {
+          transform: translateY(140vh);
+          opacity: 0;
+        }
+      }
+
+      /* SCAN */
+
+      @keyframes scan {
+        0% {
+          top: -10px;
+        }
+
+        100% {
+          top: 100%;
+        }
+      }
+
+      /* FLASH */
+
+      @keyframes flash {
+        0% {
+          opacity: 0;
+        }
+
+        96% {
+          opacity: 0;
+        }
+
+        97% {
+          opacity: 0.08;
+        }
+
+        98% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 0;
+        }
+      }
+
+      /* GLOW */
+
+      @keyframes pulseGlow {
+        0% {
+          opacity: 0.05;
+        }
+
+        50% {
+          opacity: 0.12;
+        }
+
+        100% {
+          opacity: 0.05;
+        }
+      }
+
+      /* APPEAR */
+
+      @keyframes appear {
+        from {
+          opacity: 0;
+          transform: scale(0.92);
+        }
+
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
       }
     </style>
   </head>
 
   <body>
-    <h1>SIGNAL FOUND</h1>
+    <!-- RED GLOW -->
 
-    <p>.... . .-.. .--.</p>
-    <p>/cuhx</p>
-    <!-- KEY = TWOTWO -->
+    <div class="redGlow"></div>
+
+    <!-- BLOOD -->
+
+    <div class="blood b1"></div>
+    <div class="blood b2"></div>
+    <div class="blood b3"></div>
+    <div class="blood b4"></div>
+
+    <!-- FLASH -->
+
+    <div class="flash"></div>
+
+    <!-- SCANLINE -->
+
+    <div class="scanline"></div>
+
+    <!-- MAIN -->
+
+    <div class="container">
+      <h1>SIGNAL FOUND</h1>
+
+      <p class="morse">.... . .-.. .--.</p>
+
+      <p class="cipher">/cuhx</p>
+
+      <p class="message">
+        Tidak semua yang engkau anggap itu dijadikan prioritas, maka ubahlah
+        pemikiranmu ke sebuah penyendirian<br />
+        some signals were never meant to return
+      </p>
+
+      <!-- the signal repeats twice -->
+    </div>
   </body>
 </html>
