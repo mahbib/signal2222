@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ECHO</title>
+
+    <style>
+      body {
+        background: black;
+        color: red;
+        font-family: monospace;
+        padding: 40px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>SIGNAL FOUND</h1>
+
+    <p>.... . .-.. .--.</p>
+  </body>
+</html>
